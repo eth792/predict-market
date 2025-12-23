@@ -14,18 +14,12 @@ import {
   Tv,
   Earth,
   BarChart3,
-  Medal,
-  Percent,
-  Brain,
-  Activity,
-  BarChart2,
-  FileText,
   X as XIcon,
   Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { categories, tools } from "@/data/static";
+import { categories } from "@/data/static";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
@@ -44,12 +38,6 @@ const iconMap: Record<string, React.ReactNode> = {
   tv: <Tv className="w-4 h-4" />,
   earth: <Earth className="w-4 h-4" />,
   "bar-chart-3": <BarChart3 className="w-4 h-4" />,
-  medal: <Medal className="w-4 h-4" />,
-  percent: <Percent className="w-4 h-4" />,
-  brain: <Brain className="w-4 h-4" />,
-  activity: <Activity className="w-4 h-4" />,
-  "bar-chart-2": <BarChart2 className="w-4 h-4" />,
-  "file-text": <FileText className="w-4 h-4" />,
 };
 
 /* ============================================================
@@ -161,37 +149,12 @@ export function Sidebar({
             ))}
           </nav>
 
-          {/* Tools */}
-          <div className="px-4 py-2 mt-4">
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-              Tools
-            </span>
-          </div>
-          <nav className="space-y-0.5 px-2">
-            {tools.map((tool) => (
-              <Button
-                key={tool.id}
-                variant="sidebar"
-                size="sm"
-                className="w-full h-9 px-3"
-              >
-                {iconMap[tool.icon]}
-                {tool.name}
-              </Button>
-            ))}
-          </nav>
         </div>
 
         {/* Footer */}
         <div className="p-4 border-t border-sidebar-border">
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center">
             <ThemeToggle />
-            <a
-              href="#"
-              className="text-sidebar-foreground hover:text-foreground transition-colors"
-            >
-              <XIcon className="w-4 h-4" />
-            </a>
           </div>
         </div>
       </aside>
