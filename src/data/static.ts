@@ -12,7 +12,6 @@ export const categories: Category[] = [
   { id: "finance", name: "Finance", icon: "trending-up" },
   { id: "crypto", name: "Crypto", icon: "bitcoin" },
   { id: "geopolitics", name: "Geopolitics", icon: "globe" },
-  { id: "earnings", name: "Earnings", icon: "dollar-sign" },
   { id: "tech", name: "Tech", icon: "cpu" },
   { id: "culture", name: "Culture", icon: "tv" },
   { id: "world", name: "World", icon: "earth" },
