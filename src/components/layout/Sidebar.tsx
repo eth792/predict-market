@@ -16,12 +16,17 @@ import {
   BarChart3,
   X as XIcon,
   Menu,
+  Home,
+  Wallet,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { categories } from "@/data/static";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { categories, mainNav } from "@/data/static";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { WalletButton } from "@/components/wallet/WalletButton";
 
 /* ============================================================
  * Icon Map
@@ -38,6 +43,8 @@ const iconMap: Record<string, React.ReactNode> = {
   tv: <Tv className="w-4 h-4" />,
   earth: <Earth className="w-4 h-4" />,
   "bar-chart-3": <BarChart3 className="w-4 h-4" />,
+  home: <Home className="w-4 h-4" />,
+  wallet: <Wallet className="w-4 h-4" />,
 };
 
 /* ============================================================
@@ -58,6 +65,14 @@ export function Sidebar({
   onClose,
 }: SidebarProps) {
   const [searchQuery, setSearchQuery] = useState("");
+  const pathname = usePathname();
+
+  const isNavActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <>
@@ -119,6 +134,36 @@ export function Sidebar({
           </div>
         </div>
 
+        {/* Main Navigation */}
+        <div className="flex flex-col gap-2 px-4 py-2">
+          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+            Navigation
+          </span>
+          <nav className="space-y-0.5">
+            {mainNav.map((item) => {
+              const active = isNavActive(item.href);
+              return (
+                <Button
+                  key={item.id}
+                  variant={active ? "sidebarActive" : "sidebar"}
+                  size="sm"
+                  className="w-full justify-start h-9 px-3"
+                  asChild
+                >
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className="flex items-center gap-2 w-full"
+                  >
+                    {iconMap[item.icon]}
+                    <span>{item.name}</span>
+                  </Link>
+                </Button>
+              );
+            })}
+          </nav>
+        </div>
+
         {/* Categories */}
         <div className="flex-1 overflow-y-auto scrollbar-thin">
           <div className="px-4 py-2">
@@ -152,7 +197,10 @@ export function Sidebar({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-sidebar-border">
+        <div className="p-4 border-t border-sidebar-border space-y-3">
+          <div className="flex items-center justify-center">
+            <WalletButton />
+          </div>
           <div className="flex items-center justify-center">
             <ThemeToggle />
           </div>

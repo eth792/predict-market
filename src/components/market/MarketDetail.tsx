@@ -12,6 +12,10 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
+import { useState } from "react";
+import { PlaceOrderSection } from "./PlaceOrderSection";
+import { OrderBook } from "./OrderBook";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 /* ============================================================
  * Chart Data Generator
@@ -42,9 +46,11 @@ interface MarketDetailProps {
 
 export function MarketDetail({ market }: MarketDetailProps) {
   const chartData = generateChartData();
+  const [selectedOutcome, setSelectedOutcome] = useState<"yes" | "no">("yes");
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
 
   return (
-    <div className="w-full lg:w-[400px] xl:w-[450px] h-full bg-background border-l border-border overflow-y-auto scrollbar-thin animate-slide-in-right">
+    <div className="w-full lg:w-[400px] xl:w-[450px] h-full bg-background overflow-y-auto scrollbar-thin animate-slide-in-right">
       {/* Header */}
       <div className="p-4 border-b border-border">
         <div className="flex items-start gap-3 mb-4">
@@ -177,13 +183,24 @@ export function MarketDetail({ market }: MarketDetailProps) {
             </div>
 
             <div className="flex items-center gap-2">
-              <Button variant="success" size="xs">
+              <Button
+                variant={selectedOutcome === 'yes' ? 'success' : 'outline'}
+                size="xs"
+                onClick={() => {
+                  setSelectedOutcome('yes');
+                  setIsOrderDialogOpen(true);
+                }}
+              >
                 Yes {option.yesPrice.toFixed(1)}¢
               </Button>
               <Button
-                variant="outline"
+                variant={selectedOutcome === 'no' ? 'destructive' : 'outline'}
                 size="xs"
-                className="text-muted-foreground"
+                className={selectedOutcome === 'no' ? '' : 'text-muted-foreground'}
+                onClick={() => {
+                  setSelectedOutcome('no');
+                  setIsOrderDialogOpen(true);
+                }}
               >
                 No {option.noPrice.toFixed(1)}¢
               </Button>
@@ -191,6 +208,28 @@ export function MarketDetail({ market }: MarketDetailProps) {
           </div>
         ))}
       </div>
+
+      {/* Order Book */}
+      <div className="p-4 border-t border-border">
+        <OrderBook
+          marketId={market.id}
+          selectedOutcome={selectedOutcome}
+          onOutcomeChange={setSelectedOutcome}
+        />
+      </div>
+
+      <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+        <DialogContent className="max-w-lg">
+          <DialogHeader>
+            <DialogTitle>Place Order · {selectedOutcome.toUpperCase()}</DialogTitle>
+          </DialogHeader>
+          <PlaceOrderSection
+            marketId={market.id}
+            selectedOutcome={selectedOutcome}
+            onOrderPlaced={() => setIsOrderDialogOpen(false)}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

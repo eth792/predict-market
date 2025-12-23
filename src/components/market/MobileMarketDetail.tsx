@@ -13,6 +13,10 @@ import {
   Tooltip,
 } from "recharts";
 import { cn } from "@/lib/utils";
+import { useState } from "react";
+import { PlaceOrderSection } from "./PlaceOrderSection";
+import { OrderBook } from "./OrderBook";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 /* ============================================================
  * Chart Data Generator
@@ -48,6 +52,8 @@ export function MobileMarketDetail({
   onClose,
 }: MobileMarketDetailProps) {
   const chartData = generateChartData();
+  const [selectedOutcome, setSelectedOutcome] = useState<"yes" | "no">("yes");
+  const [isOrderDialogOpen, setIsOrderDialogOpen] = useState(false);
 
   return (
     <>
@@ -172,7 +178,7 @@ export function MobileMarketDetail({
         </div>
 
         {/* Trading options */}
-        <div className="p-4 space-y-3 pb-8">
+        <div className="p-4 space-y-3">
           {market.options.map((option) => (
             <div
               key={option.id}
@@ -194,13 +200,24 @@ export function MobileMarketDetail({
               </div>
 
               <div className="flex items-center gap-2">
-                <Button variant="success" size="xs">
+                <Button
+                  variant={selectedOutcome === 'yes' ? 'success' : 'outline'}
+                  size="xs"
+                  onClick={() => {
+                    setSelectedOutcome('yes');
+                    setIsOrderDialogOpen(true);
+                  }}
+                >
                   Yes {option.yesPrice.toFixed(1)}¢
                 </Button>
                 <Button
-                  variant="outline"
+                  variant={selectedOutcome === 'no' ? 'destructive' : 'outline'}
                   size="xs"
-                  className="text-muted-foreground"
+                  className={selectedOutcome === 'no' ? '' : 'text-muted-foreground'}
+                  onClick={() => {
+                    setSelectedOutcome('no');
+                    setIsOrderDialogOpen(true);
+                  }}
                 >
                   No {option.noPrice.toFixed(1)}¢
                 </Button>
@@ -208,6 +225,28 @@ export function MobileMarketDetail({
             </div>
           ))}
         </div>
+
+        {/* Order Book */}
+        <div className="p-4 border-t border-border">
+          <OrderBook
+            marketId={market.id}
+            selectedOutcome={selectedOutcome}
+            onOutcomeChange={setSelectedOutcome}
+          />
+        </div>
+
+        <Dialog open={isOrderDialogOpen} onOpenChange={setIsOrderDialogOpen}>
+          <DialogContent className="max-w-lg">
+            <DialogHeader>
+              <DialogTitle>Place Order · {selectedOutcome.toUpperCase()}</DialogTitle>
+            </DialogHeader>
+            <PlaceOrderSection
+              marketId={market.id}
+              selectedOutcome={selectedOutcome}
+              onOrderPlaced={() => setIsOrderDialogOpen(false)}
+            />
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );

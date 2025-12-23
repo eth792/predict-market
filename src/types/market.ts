@@ -63,3 +63,10 @@ export interface Tool {
   icon: string;
   href: string;
 }
+
+export interface NavigationItem {
+  id: string;
+  name: string;
+  icon: string;
+  href: string;
+}
