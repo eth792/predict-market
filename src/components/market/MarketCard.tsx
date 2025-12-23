@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Calendar, TrendingUp } from "lucide-react";
 import type { Market, MarketOption } from "@/types/market";

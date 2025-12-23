@@ -1,5 +1,3 @@
-"use client";
-
 import { Flame, ChevronRight } from "lucide-react";
 import type { Market } from "@/types/market";
 import { MarketCard } from "./MarketCard";
