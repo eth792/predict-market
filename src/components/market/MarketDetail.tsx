@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Calendar, TrendingUp, Tag, Clock } from "lucide-react";
 import type { Market } from "@/types/market";
 import { Button } from "@/components/ui/button";
@@ -47,9 +48,11 @@ export function MarketDetail({ market }: MarketDetailProps) {
       {/* Header */}
       <div className="p-4 border-b border-border">
         <div className="flex items-start gap-3 mb-4">
-          <img
+          <Image
             src={market.image}
             alt={market.title}
+            width={48}
+            height={48}
             className="w-12 h-12 rounded-lg object-cover"
           />
           <div>
@@ -160,9 +163,11 @@ export function MarketDetail({ market }: MarketDetailProps) {
           >
             <div className="flex items-center gap-2">
               {option.image && (
-                <img
+                <Image
                   src={option.image}
                   alt={option.name}
+                  width={32}
+                  height={32}
                   className="w-8 h-8 rounded-full object-cover"
                 />
               )}
