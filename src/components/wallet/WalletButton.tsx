@@ -89,26 +89,6 @@ export function WalletButton() {
 
               return (
                 <div className="flex gap-2">
-                  {chain.hasIcon && (
-                    <Button
-                      onClick={openChainModal}
-                      size="sm"
-                      variant="outline"
-                      className="border-border"
-                    >
-                      {chain.iconUrl && (
-                        <Image
-                          alt={chain.name ?? 'Chain icon'}
-                          src={chain.iconUrl}
-                          width={16}
-                          height={16}
-                          style={{ marginRight: 8 }}
-                        />
-                      )}
-                      {chain.name}
-                    </Button>
-                  )}
-
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button
