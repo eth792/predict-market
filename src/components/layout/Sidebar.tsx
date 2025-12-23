@@ -10,7 +10,6 @@ import {
   TrendingUp,
   Bitcoin,
   Globe,
-  DollarSign,
   Cpu,
   Tv,
   Earth,
@@ -41,7 +40,6 @@ const iconMap: Record<string, React.ReactNode> = {
   "trending-up": <TrendingUp className="w-4 h-4" />,
   bitcoin: <Bitcoin className="w-4 h-4" />,
   globe: <Globe className="w-4 h-4" />,
-  "dollar-sign": <DollarSign className="w-4 h-4" />,
   cpu: <Cpu className="w-4 h-4" />,
   tv: <Tv className="w-4 h-4" />,
   earth: <Earth className="w-4 h-4" />,
@@ -185,19 +183,8 @@ export function Sidebar({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-sidebar-border space-y-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="w-full justify-start gap-2 h-9 border-border text-sidebar-foreground hover:text-foreground"
-          >
-            <DollarSign className="w-4 h-4" />
-            Buy $PM
-          </Button>
-          <Button variant="secondary" size="sm" className="w-full h-9">
-            Log in
-          </Button>
-          <div className="flex items-center justify-center gap-2 pt-2">
+        <div className="p-4 border-t border-sidebar-border">
+          <div className="flex items-center justify-center gap-2">
             <ThemeToggle />
             <a
               href="#"

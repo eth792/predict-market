@@ -44,7 +44,7 @@ export function MarketDetail({ market }: MarketDetailProps) {
   const chartData = generateChartData();
 
   return (
-    <div className="w-full lg:w-[400px] xl:w-[450px] bg-background border-l border-border overflow-y-auto scrollbar-thin animate-slide-in-right">
+    <div className="w-full lg:w-[400px] xl:w-[450px] h-full bg-background border-l border-border overflow-y-auto scrollbar-thin animate-slide-in-right">
       {/* Header */}
       <div className="p-4 border-b border-border">
         <div className="flex items-start gap-3 mb-4">

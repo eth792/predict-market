@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background flex flex-col lg:flex-row">
+    <div className="h-screen bg-background flex flex-col lg:flex-row overflow-hidden">
       <Sidebar
         selectedCategory={selectedCategory}
         onCategoryChange={handleCategoryChange}
@@ -61,7 +61,7 @@ export default function Home() {
         onClose={() => setSidebarOpen(false)}
       />
 
-      <div className="flex-1 flex flex-col min-h-screen">
+      <div className="flex-1 flex flex-col h-screen">
         {/* Mobile header with menu button */}
         <header className="lg:hidden flex items-center gap-3 px-4 py-3 border-b border-border bg-background sticky top-0 z-30">
           <MobileMenuButton onClick={() => setSidebarOpen(true)} />
@@ -75,7 +75,7 @@ export default function Home() {
           </span>
         </header>
 
-        <main className="flex-1 flex flex-col lg:flex-row">
+        <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
           {/* Error State */}
           {error && (
             <div className="flex-1 flex items-center justify-center">
@@ -102,7 +102,7 @@ export default function Home() {
           {selectedMarket && (
             <>
               {/* Desktop detail */}
-              <div className="hidden lg:block">
+              <div className="hidden lg:block h-full">
                 <MarketDetail market={selectedMarket} />
               </div>
 
