@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Calendar, TrendingUp } from "lucide-react";
 import type { Market, MarketOption } from "@/types/market";
 import { cn } from "@/lib/utils";
@@ -27,9 +28,11 @@ export function MarketCard({ market, isSelected, onClick }: MarketCardProps) {
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
-          <img
+          <Image
             src={market.image}
             alt={market.title}
+            width={40}
+            height={40}
             className="w-10 h-10 rounded-lg object-cover"
           />
           <h3 className="font-medium text-foreground text-sm">{market.title}</h3>
@@ -73,9 +76,11 @@ function MarketOptionRow({ option }: { option: MarketOption }) {
     <div className="flex items-center gap-3">
       <div className="flex items-center gap-2 min-w-0 flex-1">
         {option.image && (
-          <img
+          <Image
             src={option.image}
             alt={option.name}
+            width={20}
+            height={20}
             className="w-5 h-5 rounded-full object-cover"
           />
         )}
