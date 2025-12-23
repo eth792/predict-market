@@ -84,6 +84,57 @@ export function useMarkets(params) {
 NEXT_PUBLIC_API_URL=https://prediction-api.fastxparking.com
 ```
 
+## React Hooks 铁律
+
+### useEffect 不是万能胶水
+
+```typescript
+// ❌ 派生状态用 effect 同步 — 级联渲染的根源
+useEffect(() => {
+  setFiltered(items.filter(x => x.active));
+}, [items]);
+
+// ✅ 派生状态直接计算
+const filtered = useMemo(() => items.filter(x => x.active), [items]);
+```
+
+```typescript
+// ❌ effect 作为事件处理器
+useEffect(() => {
+  if (submitted) doSomething();
+}, [submitted]);
+
+// ✅ 事件处理器直接调用
+const handleSubmit = () => { doSomething(); };
+```
+
+```typescript
+// ❌ effect 初始化状态
+useEffect(() => {
+  setWidth(window.innerWidth);
+}, []);
+
+// ✅ 订阅外部存储用 useSyncExternalStore
+const width = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+```
+
+### 状态设计原则
+
+- **存 ID 不存对象**: 状态存储最小标识符，通过 useMemo 派生完整对象
+- **单一数据源**: 同一数据只存一处，其他地方计算得出
+- **状态下沉**: 状态放在最小必要范围，避免 prop drilling
+
+### "use client" 边界
+
+```
+Server Component (默认)
+    └── "use client" 只标记真正需要浏览器 API 的边界入口
+         └── 边界内的子组件不需要再标记 "use client"
+```
+
+**需要 "use client"**: useState, useEffect, 事件监听, 浏览器 API, client-only 库 (recharts)
+**不需要**: 纯展示组件, 只接收 props/回调的组件, forwardRef 包装
+
 ## Development
 
 ```bash
