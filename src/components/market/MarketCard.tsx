@@ -18,8 +18,8 @@ export function MarketCard({ market, isSelected, onClick }: MarketCardProps) {
   return (
     <div
       className={cn(
-        "border-b border-border py-4 px-4 cursor-pointer transition-colors hover:bg-secondary/50",
-        isSelected && "bg-secondary/50"
+        "border-b border-border py-4 px-4 cursor-pointer transition-colors",
+        isSelected ? "bg-muted shadow-inner" : "hover:bg-muted/50"
       )}
       onClick={onClick}
     >

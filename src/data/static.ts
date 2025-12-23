@@ -3,7 +3,12 @@
  * 分类和工具的静态数据
  * ============================================================ */
 
-import type { Category, Tool } from "@/types/market";
+import type { Category, Tool, NavigationItem } from "@/types/market";
+
+export const mainNav: NavigationItem[] = [
+  { id: "markets", name: "Markets", icon: "home", href: "/" },
+  { id: "portfolio", name: "Portfolio", icon: "wallet", href: "/portfolio" },
+];
 
 export const categories: Category[] = [
   { id: "trending", name: "Trending", icon: "flame" },

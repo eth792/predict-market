@@ -201,11 +201,16 @@ export const UserPortfolioSchema = z.object({
  * Auth Schemas
  * ============================================================ */
 
+const IdSchema = z
+  .union([z.string(), z.number()])
+  .transform((value) => value.toString());
+
 export const UserProfileSchema = z.object({
-  id: z.string(),
+  id: IdSchema,
   walletAddress: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
+  username: z.string().optional(),
+  createdAt: z.string().optional(),
+  updatedAt: z.string().optional(),
 });
 
 export const LoginResponseSchema = z.object({
