@@ -93,7 +93,7 @@ export function Sidebar({
       >
         {/* Header */}
         <div className="p-4 border-b border-sidebar-border">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-foreground rounded-lg flex items-center justify-center">
                 <span className="text-background font-bold text-sm">P</span>
@@ -107,6 +107,7 @@ export function Sidebar({
                 </p>
               </div>
             </div>
+            <ThemeToggle />
             <Button
               variant="ghost"
               size="icon"
@@ -200,9 +201,6 @@ export function Sidebar({
         <div className="p-4 border-t border-sidebar-border space-y-3">
           <div className="flex items-center justify-center">
             <WalletButton />
-          </div>
-          <div className="flex items-center justify-center">
-            <ThemeToggle />
           </div>
         </div>
       </aside>
