@@ -7,6 +7,7 @@ import type { Category, Tool, NavigationItem } from "@/types/market";
 
 export const mainNav: NavigationItem[] = [
   { id: "markets", name: "Markets", icon: "home", href: "/" },
+  { id: "dashboard", name: "Dashboard", icon: "bar-chart-3", href: "/dashboard" },
   { id: "portfolio", name: "Portfolio", icon: "wallet", href: "/portfolio" },
 ];
 
