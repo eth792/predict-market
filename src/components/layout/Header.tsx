@@ -1,63 +1,81 @@
-import { Search, Menu } from "lucide-react";
+import { Search } from "lucide-react";
+import { headerNav } from "@/data/static";
+import Image from "next/image";
 
-const NAV_LINKS = [
-  { label: "Ranks", href: "#" },
-  { label: "Activity", href: "#" },
-  { label: "Sports", href: "#" },
-  { label: "Dashboards", href: "#" },
-  { label: "Markets", href: "#" },
-];
+function Logo() {
+  return (
+    <div className="flex shrink-0 items-center">
+      <div className="relative mr-2 h-7 w-7 rounded-lg md:mr-3 md:h-8 md:w-8">
+        <Image
+          src="/logo.jpg"
+          alt="PredictMarket"
+          className="rounded-lg"
+          width={32}
+          height={32}
+        />
+      </div>
+      <span className="text-lg font-bold text-white md:text-xl">
+        PredictMarket
+      </span>
+    </div>
+  );
+}
+
+function SearchBar() {
+  return (
+    <div className="mx-2 hidden max-w-2xl flex-1 sm:flex md:mx-4">
+      <div className="relative w-full">
+        <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
+        <input
+          type="text"
+          placeholder="Search markets"
+          className="focus:border-blue-primary focus:ring-blue-primary w-full rounded-lg border border-gray-700 bg-[#0c1d41] py-1.5 pr-4 pl-9 text-sm text-white placeholder-gray-400 focus:outline-none"
+        />
+      </div>
+    </div>
+  );
+}
+
+function NavLinks() {
+  return (
+    <nav className="hidden shrink-0 items-center space-x-4 lg:flex xl:space-x-6">
+      {headerNav.map((link) => (
+        <a
+          key={link.id}
+          href={link.href}
+          className="hover:text-blue-light text-[12px] whitespace-nowrap text-white transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function ActionButtons() {
+  return (
+    <div className="flex shrink-0 items-center space-x-2 md:space-x-3">
+      <button className="group relative cursor-pointer rounded-lg bg-linear-to-r from-blue-600 to-blue-400 p-px transition-all hover:from-blue-500 hover:to-blue-300">
+        <span className="relative flex rounded-[calc(0.5rem-1px)] bg-[#00133c] px-3 py-[0.3125rem] text-xs font-medium whitespace-nowrap text-white md:px-4 md:text-sm">
+          Log In
+        </span>
+      </button>
+      <button className="cursor-pointer rounded-lg border bg-linear-to-r from-blue-600 via-blue-500 to-blue-400 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white transition-all hover:from-blue-500 hover:via-blue-400 hover:to-blue-300 md:px-4 md:text-sm">
+        Sign Up
+      </button>
+    </div>
+  );
+}
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 w-full bg-background border-b border-border h-16">
-      <div className="max-w-[1400px] mx-auto px-4 h-full flex items-center justify-between gap-4">
-        <div className="flex items-center gap-6 flex-1">
-          <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-8 h-8 bg-primary rounded-md flex items-center justify-center transform rotate-45">
-              <div className="w-4 h-4 bg-primary-foreground transform -rotate-45" />
-            </div>
-            <span className="text-xl font-bold tracking-tight hidden md:block">
-              Polymarket
-            </span>
-          </div>
-
-          <div className="relative max-w-md w-full hidden md:block">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-4 w-4 text-muted-foreground" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search markets"
-              className="block w-full pl-10 pr-3 py-2 border border-border rounded-lg bg-background text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary sm:text-sm transition"
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-6">
-          <nav className="hidden lg:flex items-center gap-6">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <button className="hidden md:inline-flex px-4 py-2 text-sm font-medium border border-border rounded-lg hover:bg-accent transition-colors">
-              Log In
-            </button>
-            <button className="px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 transition-colors">
-              Sign Up
-            </button>
-            <button className="md:hidden p-2 text-muted-foreground">
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
+    <header className="sticky top-0 z-50 border-b border-gray-700 bg-[#00133c]">
+      <div className="mx-auto max-w-[1400px] px-4">
+        <div className="flex h-16 items-center justify-between gap-2 md:gap-4">
+          <Logo />
+          <SearchBar />
+          <NavLinks />
+          <ActionButtons />
         </div>
       </div>
     </header>

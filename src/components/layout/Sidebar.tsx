@@ -25,7 +25,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { categories, mainNav } from "@/data/static";
 import { cn } from "@/lib/utils";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+// import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { WalletButton } from "@/components/wallet/WalletButton";
 
 /* ============================================================
@@ -107,7 +107,7 @@ export function Sidebar({
                 </p>
               </div>
             </div>
-            <ThemeToggle />
+            {/* <ThemeToggle /> */}
             <Button
               variant="ghost"
               size="icon"

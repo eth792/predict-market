@@ -1,63 +1,46 @@
 import Image from "next/image";
+import { HERO_CARDS } from "@/data/dashboard";
 
-const HERO_CARDS = [
-  {
-    id: 'hero-1',
-    title: "The 47th President",
-    subtitle: "Track promises, policies, appointments & more!",
-    image: "https://picsum.photos/200/200?random=100",
-    action: "Dashboard",
-    gradient: "from-blue-600 via-blue-800 to-slate-900"
-  },
-  {
-    id: 'hero-2',
-    title: "TikTok's Future",
-    subtitle: "Ban, sale, or status quo? The clock is ticking.",
-    image: "https://picsum.photos/200/200?random=101",
-    action: "Trade Now",
-    gradient: "from-cyan-600 via-cyan-800 to-slate-900"
-  },
-  {
-    id: 'hero-3',
-    title: "Crypto 2025",
-    subtitle: "Bitcoin $100k? ETF approvals? The future of DeFi.",
-    image: "https://picsum.photos/200/200?random=102",
-    action: "Markets",
-    gradient: "from-indigo-600 via-indigo-800 to-slate-900"
-  },
-  {
-    id: 'hero-4',
-    title: "First 100 Days",
-    subtitle: "Executive orders, pardons, and legislation.",
-    image: "https://picsum.photos/200/200?random=103",
-    action: "View All",
-    gradient: "from-sky-600 via-sky-800 to-slate-900"
-  }
-];
+interface HeroCardProps {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  action: string;
+  gradient: string;
+}
 
-function HeroCard({ title, subtitle, image, action, gradient }: typeof HERO_CARDS[0]) {
+function HeroCard({ title, subtitle, image, action, gradient }: HeroCardProps) {
   return (
-    <div className={`relative overflow-hidden rounded-xl h-48 flex-shrink-0 w-80 md:w-96 snap-center group cursor-pointer border border-border hover:border-primary/50 transition-all duration-300`}>
-      <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-90 group-hover:opacity-100 transition-opacity`} />
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-
+    <div className="group border-border hover:border-white/20 relative h-48 cursor-pointer overflow-hidden rounded-xl border transition-all duration-300">
       <Image
         src={image}
         alt={title}
-        width={200}
-        height={200}
-        className="absolute right-0 bottom-0 h-48 w-48 object-cover opacity-60 mix-blend-overlay transform group-hover:scale-105 transition-transform duration-500"
+        fill
+        className="absolute right-0 bottom-0 h-full w-full transform object-cover transition-transform duration-500 group-hover:scale-105"
       />
 
-      <div className="relative z-10 p-6 flex flex-col h-full justify-between">
+      <div
+        className="relative z-10 flex h-full w-4/5 flex-col justify-between p-6"
+        style={{
+          background:
+            "linear-gradient(90deg, #3a80ff 0%, #3a80ff 50%, transparent)",
+        }}
+      >
         <div className="space-y-2">
-          <h2 className="text-xl font-bold text-white leading-tight drop-shadow-md tracking-tight">{title}</h2>
-          <p className="text-sm text-blue-50/90 leading-snug font-medium max-w-[80%]">{subtitle}</p>
+          <h2 className="text-xl leading-tight font-bold tracking-tight text-white drop-shadow-md">
+            {title}
+          </h2>
+          <p className="max-w-[80%] text-sm leading-snug font-medium text-blue-50/90">
+            {subtitle}
+          </p>
         </div>
 
-        <button className="self-start px-4 py-1.5 rounded-lg border border-white/20 bg-white/10 text-xs font-semibold text-white backdrop-blur-md hover:bg-white/20 transition-all uppercase tracking-wide flex items-center gap-1 shadow-sm">
+        <button className="flex items-center gap-1 self-start rounded-xl border border-white/60 bg-white/10 px-4 py-2.5 text-xs font-semibold tracking-wide text-white uppercase shadow-sm backdrop-blur-md transition-all hover:bg-white/20">
           {action}
-          <span className="group-hover:translate-x-0.5 transition-transform">›</span>
+          <span className="transition-transform group-hover:translate-x-0.5">
+            ›
+          </span>
         </button>
       </div>
     </div>
@@ -66,7 +49,7 @@ function HeroCard({ title, subtitle, image, action, gradient }: typeof HERO_CARD
 
 export function HeroSection() {
   return (
-    <div className="flex gap-4 overflow-x-auto no-scrollbar snap-x pb-4 pt-2">
+    <div className="grid grid-cols-1 gap-4 pt-2 pb-4 sm:grid-cols-2 lg:grid-cols-4">
       {HERO_CARDS.map((card) => (
         <HeroCard key={card.id} {...card} />
       ))}
