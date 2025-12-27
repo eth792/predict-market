@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "@base-org/account": "^2.5.1",
@@ -51,6 +53,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
     "eslint-plugin-react-you-might-not-need-an-effect": "^0.8.1",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

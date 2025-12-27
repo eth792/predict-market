@@ -1,64 +1,124 @@
 "use client";
 
 import { Search } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
-const CATEGORIES = ['Top', 'New', 'Breaking News', 'Politics', 'Sports', 'Crypto', 'Business', 'Pop Culture', 'Science'];
-const SUB_CATEGORIES = ['New', 'Breaking News', 'Trump Week 1', 'Cabinet', 'TikTok', 'Israel', 'Bitcoin', 'Inauguration'];
+const CATEGORIES = [
+  "Top",
+  "New",
+  "Breaking News",
+  "Politics",
+  "Sports",
+  "Crypto",
+  "Business",
+  "Pop Culture",
+  "Science",
+];
+const SUB_CATEGORIES = [
+  "New",
+  "Breaking News",
+  "Trump Week 1",
+  "Cabinet",
+  "TikTok",
+  "Israel",
+  "Bitcoin",
+  "Inauguration",
+  "Biggest Movers",
+  "Most Active",
+  "Most Viewed",
+  "Most Discussed",
+  "Most Popular",
+  "Most Trending",
+  "Most Recent",
+];
 
 export function FilterBar() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showRightArrow, setShowRightArrow] = useState(false);
+
+  const checkScrollable = () => {
+    if (scrollContainerRef.current) {
+      const { scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowRightArrow(scrollWidth > clientWidth);
+    }
+  };
+
+  useEffect(() => {
+    checkScrollable();
+
+    const resizeObserver = new ResizeObserver(() => {
+      checkScrollable();
+    });
+
+    if (scrollContainerRef.current) {
+      resizeObserver.observe(scrollContainerRef.current);
+    }
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, []);
+
+  const handleRightArrowClick = () => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = scrollContainerRef.current.clientWidth * 0.8;
+      scrollContainerRef.current.scrollBy({
+        left: scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between gap-4 overflow-x-auto no-scrollbar">
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-accent text-primary border border-border text-sm font-semibold whitespace-nowrap">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            LIVE
-          </button>
-
-          <div className="h-6 w-px bg-border mx-2" />
-
-          {CATEGORIES.map((cat, i) => (
-            <button
-              key={cat}
-              className={`px-4 py-1.5 rounded-lg text-sm font-medium whitespace-nowrap transition-colors ${
-                i === 1 ? 'bg-accent text-foreground' : 'text-muted-foreground hover:bg-accent hover:text-foreground'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
+    <div className="flex flex-col">
       <div className="flex items-center gap-4">
-        <button className="flex items-center gap-2 px-4 py-1.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold whitespace-nowrap hover:bg-primary/90">
+        <button className="flex cursor-pointer items-center gap-2 rounded-lg border bg-linear-to-r from-blue-600 via-blue-500 to-blue-400 px-3 py-1.5 text-xs font-medium whitespace-nowrap text-white transition-all duration-300 ease-out hover:from-blue-500 hover:via-blue-400 hover:to-blue-300 hover:shadow-md md:px-4 md:text-sm">
           TOP ↗
         </button>
 
-        <div className="flex-1 relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-3.5 w-3.5 text-muted-foreground" />
-          </div>
+        <div className="relative max-w-150 flex-1">
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-gray-400" />
           <input
             type="text"
             placeholder="Search by markets"
-            className="w-full bg-background border border-border rounded-lg py-1.5 pl-9 pr-4 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary"
+            className="focus:border-blue-primary focus:ring-blue-primary w-full rounded-lg border border-gray-700 bg-[#0c1d41] py-1.5 pr-4 pl-9 text-xs text-white placeholder-gray-400 focus:outline-none md:text-sm"
           />
         </div>
-
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar max-w-[50%] md:max-w-none">
-          {SUB_CATEGORIES.map(sub => (
+      </div>
+      <div className="flex items-center gap-2">
+        <div
+          ref={scrollContainerRef}
+          className="no-scrollbar flex flex-1 items-center gap-2 overflow-x-auto overflow-y-visible pt-4 pb-4"
+        >
+          {SUB_CATEGORIES.map((sub) => (
             <button
               key={sub}
-              className="px-3 py-1.5 rounded-lg bg-background border border-border text-muted-foreground text-xs font-medium whitespace-nowrap hover:bg-accent hover:text-foreground transition-colors"
+              className="border-border text-foreground/65 hover:text-foreground cursor-pointer rounded-lg bg-[#0e1f47] px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-all duration-300 ease-out hover:-translate-y-1 hover:bg-white/15 hover:shadow-md"
             >
               {sub}
             </button>
           ))}
-          <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-background border border-border text-muted-foreground hover:text-foreground">
-            ›
-          </button>
         </div>
+        {showRightArrow && (
+          <div
+            onClick={handleRightArrowClick}
+            className="border-border text-muted-foreground hover:text-foreground flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border bg-[#00033b]/90 pt-4 pb-4"
+          >
+            <svg
+              className="h-4 w-4 -rotate-90 text-white"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </div>
+        )}
       </div>
     </div>
   );

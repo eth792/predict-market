@@ -32,3 +32,12 @@ export const tools: Tool[] = [
   { id: "volume", name: "Trading Volume", icon: "bar-chart-2", href: "/volume" },
   { id: "docs", name: "Documentation", icon: "file-text", href: "/docs" },
 ];
+
+export const headerNav = [
+  { id: "ranks", label: "Ranks", href: "#" },
+  { id: "activity", label: "Activity", href: "#" },
+  { id: "sports", label: "Sports", href: "#" },
+  { id: "dashboards", label: "Dashboards", href: "#" },
+  { id: "markets", label: "Markets", href: "#" },
+];
+
