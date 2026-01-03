@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { RECENT_ACTIVITY, TOP_VOLUME } from "@/data/dashboard";
+import { RECENT_ACTIVITY, TOP_VOLUME } from "@/data/static-data";
 
 export function ActivitySection() {
   return (
@@ -15,7 +15,7 @@ export function ActivitySection() {
           <h3 className="text-foreground text-lg font-bold">Recent Activity</h3>
           <a
             href="#"
-            className="flex items-center gap-1 bg-linear-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-xs font-medium text-transparent hover:from-blue-500 hover:via-blue-400 hover:to-blue-300"
+            className="flex cursor-pointer items-center gap-1 bg-linear-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-xs font-medium text-transparent hover:from-blue-500 hover:via-blue-400 hover:to-blue-300"
           >
             Show all
             <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-400/20">
@@ -101,7 +101,7 @@ export function ActivitySection() {
           </h3>
           <a
             href="#"
-            className="flex items-center gap-1 bg-linear-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-xs font-medium text-transparent hover:from-blue-500 hover:via-blue-400 hover:to-blue-300"
+            className="flex cursor-pointer items-center gap-1 bg-linear-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-xs font-medium text-transparent hover:from-blue-500 hover:via-blue-400 hover:to-blue-300"
           >
             Show all
             <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blue-400/20">

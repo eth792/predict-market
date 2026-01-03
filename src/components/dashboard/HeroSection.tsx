@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HERO_CARDS } from "@/data/dashboard";
+import { HERO_CARDS } from "@/data/static-data";
 
 interface HeroCardProps {
   id: string;
@@ -36,7 +36,7 @@ function HeroCard({ title, subtitle, image, action, gradient }: HeroCardProps) {
           </p>
         </div>
 
-        <button className="flex items-center gap-1 self-start rounded-xl border border-white/60 bg-white/10 px-4 py-2.5 text-xs font-semibold tracking-wide text-white uppercase shadow-sm backdrop-blur-md transition-all hover:bg-white/20">
+        <button className="flex cursor-pointer items-center gap-1 self-start rounded-xl border border-white/60 bg-white/10 px-4 py-2.5 text-xs font-semibold tracking-wide text-white uppercase shadow-sm backdrop-blur-md transition-all hover:bg-white/20">
           {action}
           <span className="transition-transform group-hover:translate-x-0.5">
             ›

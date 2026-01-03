@@ -6,7 +6,7 @@ import { HeroSection } from "@/components/dashboard/HeroSection";
 import { FilterBar } from "@/components/dashboard/FilterBar";
 import { MarketCard } from "@/components/dashboard/MarketCard";
 import { ActivitySection } from "@/components/dashboard/ActivitySection";
-import { MARKETS_DATA } from "@/data/dashboard";
+import { MARKETS_DATA } from "@/data/static-data";
 import { CategoryNav } from "@/components/dashboard/CategoryNav";
 
 export default function Dashboard() {

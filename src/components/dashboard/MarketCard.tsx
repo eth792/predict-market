@@ -122,7 +122,7 @@ export function MarketCard({ market }: { market: Market }) {
               {market.outcomes?.slice(0, 3).map((outcome, idx) => (
                 <div
                   key={idx}
-                  className="group/item relative flex items-center justify-between rounded-md bg-black/5 p-1 transition-colors hover:bg-black/20"
+                  className="group/item relative flex cursor-pointer items-center justify-between rounded-md bg-black/5 p-1 transition-colors hover:bg-black/20"
                 >
                   <div className="relative z-10 flex min-w-0 flex-1 items-center gap-2 pr-2 pl-1">
                     <span className="text-foreground/60 group-hover/item:text-foreground truncate text-xs font-medium transition-colors">
@@ -135,7 +135,7 @@ export function MarketCard({ market }: { market: Market }) {
                       {outcome.percent}%
                     </span>
                     <button
-                      className="flex items-center justify-center rounded-md bg-teal-600/30 p-1 text-green-400 transition-colors hover:bg-teal-600/50 hover:text-green-300"
+                      className="flex cursor-pointer items-center justify-center rounded-md bg-teal-600/30 p-1 text-green-400 transition-colors hover:bg-teal-600/50 hover:text-green-300"
                       onClick={(e) => {
                         e.stopPropagation();
                         // TODO: 处理对勾按钮点击
@@ -145,7 +145,7 @@ export function MarketCard({ market }: { market: Market }) {
                     </button>
                     <div className="bg-foreground/10 h-4 w-px" />
                     <button
-                      className="flex items-center justify-center rounded-md bg-red-900/40 p-1 text-red-400 transition-colors hover:bg-red-900/50 hover:text-red-300"
+                      className="flex cursor-pointer items-center justify-center rounded-md bg-red-900/40 p-1 text-red-400 transition-colors hover:bg-red-900/50 hover:text-red-300"
                       onClick={(e) => {
                         e.stopPropagation();
                         // TODO: 处理叉叉按钮点击
@@ -158,7 +158,7 @@ export function MarketCard({ market }: { market: Market }) {
               ))}
 
               {market.outcomes && market.outcomes.length > 3 && (
-                <div className="flex items-center justify-center gap-1 pt-1">
+                <div className="flex cursor-pointer items-center justify-center gap-1 pt-1">
                   <span className="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors">
                     Show {market.outcomes.length - 3} more
                   </span>
@@ -184,7 +184,7 @@ export function MarketCard({ market }: { market: Market }) {
               <MessageSquare className="h-3.5 w-3.5" />
               <span>{market.commentsCount}</span>
             </div>
-            <button className="transition-colors hover:text-yellow-400">
+            <button className="cursor-pointer transition-colors hover:text-yellow-400">
               <Star className="h-3.5 w-3.5" />
             </button>
           </div>
