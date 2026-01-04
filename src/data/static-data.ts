@@ -476,3 +476,78 @@ export const SPORTS_COMMENTS = [
 ];
 
 export const SPORTS_QUICK_AMOUNTS = [25, 55, 250];
+
+export const SPORTS_TOP_HOLDERS = {
+  yesHolders: [
+    { user: "Alex Chen", avatar: "👨", shares: 12543 },
+    { user: "Sarah Johnson", avatar: "👩", shares: 8921 },
+    { user: "Mike Brown", avatar: "👨", shares: 7654 },
+    { user: "Emma Wilson", avatar: "👩", shares: 6432 },
+    { user: "James Lee", avatar: "👨", shares: 5123 },
+  ],
+  noHolders: [
+    { user: "David Kim", avatar: "👨", shares: 15234 },
+    { user: "Lisa Wang", avatar: "👩", shares: 11456 },
+    { user: "Tom Harris", avatar: "👨", shares: 9876 },
+    { user: "Anna Davis", avatar: "👩", shares: 7654 },
+    { user: "Chris Martin", avatar: "👨", shares: 6543 },
+  ],
+};
+
+export const SPORTS_ACTIVITY = [
+  {
+    id: 1,
+    user: "Alex Chen",
+    avatar: "👨",
+    action: "bought",
+    amount: 1000,
+    outcome: "Yes",
+    price: 14,
+    value: "140.00",
+    time: "2m ago",
+  },
+  {
+    id: 2,
+    user: "Sarah Johnson",
+    avatar: "👩",
+    action: "sold",
+    amount: 500,
+    outcome: "No",
+    price: 86,
+    value: "430.00",
+    time: "5m ago",
+  },
+  {
+    id: 3,
+    user: "Mike Brown",
+    avatar: "👨",
+    action: "bought",
+    amount: 750,
+    outcome: "Yes",
+    price: 15,
+    value: "112.50",
+    time: "8m ago",
+  },
+  {
+    id: 4,
+    user: "Emma Wilson",
+    avatar: "👩",
+    action: "bought",
+    amount: 2000,
+    outcome: "No",
+    price: 85,
+    value: "1700.00",
+    time: "12m ago",
+  },
+  {
+    id: 5,
+    user: "David Kim",
+    avatar: "👨",
+    action: "sold",
+    amount: 300,
+    outcome: "Yes",
+    price: 16,
+    value: "48.00",
+    time: "15m ago",
+  },
+];
