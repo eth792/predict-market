@@ -155,7 +155,7 @@ export default function FastXPage() {
             </p>
           </div>
           <div className="relative max-w-[90%] md:max-w-[800px] mx-auto">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#00F0FF] to-transparent md:-translate-x-1/2 shadow-[0_0_10px_rgba(0,240,255,0.5)]" />
+            <div className="absolute left-5.5 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#00F0FF] to-transparent md:-translate-x-1/2 shadow-[0_0_10px_rgba(0,240,255,0.5)]" />
             {[
               { date: "2025 Q4", title: "Rebranding & Funding", desc: "FastXParking rebranded to FastX Network • New product development started • Closed a 3M USD investment round" },
               { date: "2026 Q1", title: "Product Launch & Token Listing", desc: "Product launch with self-built vector database and AI algorithms • Mining node sale • FXN token listing" },
